@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: jud-service
+  rabbitmq:
+    host: jackal-01.rmq.cloudamqp.com
+    username: kmxpiwou
+    virtual_host: kmxpiwou
+    password: GBkOhTdEvPfJm0Uk-gs8MU8wV6tfw6RW
+
+server:
+  port: ${PORT:0}
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://tc2-microservice-discovery-server.onrender.com/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${eureka.application.instance-id:${random.value}}
+    hostname: tc2-microservico-jud.onrender.com
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+    secure-port: 443
+    prefer-ip-address: false
+    status-page-url: https://tc2-microservico-jud.onrender.com/actuator/info
+    health-check-url: https://tc2-microservico-jud.onrender.com/actuator/health
