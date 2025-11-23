@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ import java.math.BigDecimal;
 @FeignClient(name = "conta-service", path = "/v1/contas")
 public interface ContaClient {
 
-    @GetMapping("/{numeroConta}/bloqueio-saldo")
+    @PostMapping("/{numeroConta}/bloqueio-saldo")
     ResponseEntity<Void> bloquearSaldo(@PathVariable Integer numeroConta, @RequestParam BigDecimal valor);
 
     @GetMapping("/{numeroConta}/saldo")
