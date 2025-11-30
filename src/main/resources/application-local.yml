@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: jud-service
+  rabbitmq:
+    host: localhost
+    username: user
+    virtual_host: /
+    password: pwd
+
+server:
+  port: 8084
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${eureka.application.instance-id:${random.value}}
