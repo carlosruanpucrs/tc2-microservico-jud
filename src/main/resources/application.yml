@@ -1,11 +1,13 @@
 spring:
+#  profiles:
+#    active: local
   application:
     name: jud-service
   rabbitmq:
-    host: jackal-01.rmq.cloudamqp.com
-    username: kmxpiwou
-    virtual_host: kmxpiwou
-    password: GBkOhTdEvPfJm0Uk-gs8MU8wV6tfw6RW
+    host: ${RABBITMQ_HOST}
+    username: ${RABBITMQ_USER}
+    virtual_host: ${RABBITMQ_VH}
+    password: ${RABBITMQ_PWD}
 
 server:
   port: ${PORT:0}
@@ -21,13 +23,13 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: https://tc2-microservice-discovery-server.onrender.com/eureka/
+      defaultZone: ${EUREKA_SERVER_URL}/eureka/
   instance:
     instance-id: ${spring.application.name}:${eureka.application.instance-id:${random.value}}
-    hostname: tc2-microservico-jud.onrender.com
+    hostname: ${RENDER_EXTERNAL_HOSTNAME}
     non-secure-port-enabled: false
     secure-port-enabled: true
     secure-port: 443
     prefer-ip-address: false
-    status-page-url: https://tc2-microservico-jud.onrender.com/actuator/info
-    health-check-url: https://tc2-microservico-jud.onrender.com/actuator/health
+    status-page-url: ${RENDER_EXTERNAL_URL}/actuator/info
+    health-check-url: ${RENDER_EXTERNAL_URL}/actuator/health
